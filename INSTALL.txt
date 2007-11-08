@@ -7,7 +7,7 @@ directory somewhere on your Python path, or symlink to it from
 somewhere on your Python path; this is useful if you're working from a
 Subversion checkout.
 
-Please see the `Usage` paragraph in doc/overview.txt for usage details. 
+Please see the `Installation` paragraph in docs/overview.txt for usage details. 
 
 Note that this application requires Python 2.3 or later, and a recent
 Subversion checkout of Django. You can obtain Python from
