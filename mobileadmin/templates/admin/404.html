@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Page not found' %}{% endblock %}
+
+{% block content %}
+<div class="panel" selected="true">
+	<h1>{% trans "We're sorry, but the requested page could not be found." %}</h1>
+</div>
+{% endblock %}

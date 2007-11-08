@@ -1,0 +1,15 @@
+{% load mobile_admin i18n %}
+<li class="paginator">
+<span class="float-left">
+{% if pagination_required %}
+	{% for i in page_range %}
+	{% paginator_number cl i %}
+	{% endfor %}
+{% endif %}
+</span>
+<span class="float-right">
+<span class="text">{{ cl.result_count }} {% ifequal cl.result_count 1 %}{{ cl.opts.verbose_name|escape }}{% else %}{{ cl.opts.verbose_name_plural|escape }}{% endifequal %}
+{% if show_all_url %}</span>
+<a href="{{ show_all_url }}" class="inactive">{% trans 'Show all' %}</a>{% endif %}
+</span>
+</li>

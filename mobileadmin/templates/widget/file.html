@@ -1,0 +1,3 @@
+{% load mobile_admin_modify i18n %}{% if bound_field.original_value %}
+{% trans "Currently:" %} <a href="{{ bound_field.original_url }}">{{ bound_field.original_value|escape }}</a>
+{% endif %}

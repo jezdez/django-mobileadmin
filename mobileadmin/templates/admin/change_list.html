@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load mobile_admin mobile_admin_modify admin_list i18n %}
+
+{% block breadcrumbs %}{{ cl.opts.verbose_name_plural|escape|capfirst }} <a href="add/" class="float-right inactive">{% trans "Add" %}</a>{% endblock %}
+
+{% block content %}
+<ul selected="true">
+	{% for res in cl.result_list %}
+		<li><a href="{{ res.id }}/">{{ res|escape|truncate_dot:30 }}</a></li>
+	{% endfor %}
+	{% block pagination %}{% pagination cl %}{% endblock %}
+</ul>
+
+{% endblock %}

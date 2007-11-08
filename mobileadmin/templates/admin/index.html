@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+{% load i18n mobile_admin mobile_admin_modify %}
+
+{% block breadcrumbs %}
+<script type="text/javascript">
+function $(obj) {
+	return document.getElementById(obj);
+}
+function hasClass(ele,cls) { return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));}
+function addClass(ele,cls) { if (!this.hasClass(ele,cls)) ele.className += " "+cls; }
+function removeClass(ele,cls) { if (hasClass(ele,cls)) { var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)'); ele.className=ele.className.replace(reg,' ');}}
+function addAndRemoveClass(ele,_new,_old) { addClass(ele,_new); removeClass(ele,_old);}
+function tab(ele) {
+	tabs = {recent: 'applist', applist: 'recent'}
+	to_activate = ele.id.substr(1);
+	to_deactivate = tabs[to_activate];
+	$(to_deactivate).removeAttribute('selected');
+	$(to_activate).setAttribute('selected', 'true');	
+	addAndRemoveClass($(ele.id), 'active', 'inactive');
+	addAndRemoveClass($("_"+to_deactivate), 'inactive', 'active');
+}
+</script>
+<a href="#" id="_applist" onclick="tab(this);" class="float-left active">{% filter truncate_dot:15 %}{% trans "Site administration" %}{% endfilter %}</a>
+<a href="#" id="_recent" onclick="tab(this);" class="float-left inactive">{% filter truncate_dot:15 %}{% trans 'Recent Actions' %}{% endfilter %}</a>
+{% endblock %}
+
+{% block content %}
+{% load adminapplist %}
+{% get_admin_app_list as app_list %}
+{% if app_list %}
+	<ul id="applist" selected="true">
+	{% for app in app_list %}
+	<li class="group">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</li>
+	{% for model in app.models %}
+		{% if model.perms.change %}
+			<li><a target="_self" href="{{ model.admin_url }}">{{ model.name|escape }}</a></li>
+		{% else %}
+			<li>{{ model.name|escape }}</li>
+		{% endif %}
+	{% endfor %}
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>{% trans "You don't have permission to edit anything." %}</p>
+{% endif %}
+
+<ul id="recent">
+	<li class="group subgroup">{% trans 'My Actions' %}</li>
+	{% load log %}
+	{% get_admin_log 10 as admin_log for_user user %}
+	{% if not admin_log %}
+	<li>{% trans 'None available' %}</li>
+	{% else %}
+	{% for entry in admin_log %}
+	<li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">{% if not entry.is_deletion %}<a href="{{ entry.get_admin_url }}">{% endif %}{% filter capfirst|escape %}{% trans entry.content_type.name %}{% endfilter %}: {{ entry.object_repr|escape|truncate_dot:35 }}{% if not entry.is_deletion %}</a>{% endif %}</li>
+	{% endfor %}
+	{% endif %}
+</ul>
+{% endblock %}
