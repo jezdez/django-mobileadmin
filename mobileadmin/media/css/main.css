@@ -1,0 +1,536 @@
+/* main.css (c) 2007 Jannis Leidel, see LICENSE.txt for license */
+/* parts from iui.css (c) 2007 by iUI Project Members */
+body {
+    margin: 0;
+    font-family: Helvetica;
+    background: #fff;
+    color: #000;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+h1.error {
+    color: #CC2830;
+}
+
+body > *:not(.toolbar) {
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 78px;
+    width: 100%;
+    min-height: 372px;
+}
+
+body[orient="landscape"] > *:not(.toolbar) {
+    min-height: 268px;
+}
+
+body > *[selected="true"] {
+    display: block;
+}
+
+/************************************************************************************************/
+
+body > .toolbar {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-top: 1px solid #6d84a2;
+    padding: 3px 7px;
+    height: 48px;
+    background: #417690 repeat-x;
+}
+
+.toolbar > h1 {
+    float: left;
+    overflow: hidden;
+    margin: 3px 0px 0px;
+    padding: 15px 1px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: #30586C 0px -1px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.toolbar > h1 a {
+    color: #F4F379;
+    text-decoration: none;
+}
+
+.toolbar > h1 a:active {
+    background: none;
+    background-color: none;
+}
+
+.toolbar > h2 {
+    font-size: 14px;    
+    font-weight: bold;
+    float: right;
+    margin: 0 4px;
+    line-height: 20px;
+}
+
+.toolbar > h2 a, .toolbar > h2 a:active, .toolbar > h2 a:visited {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: #000 1px 1px 0;
+    display: block;
+    text-align: right;
+}
+
+
+body[orient="landscape"] > .toolbar > h1 {
+    margin-left: -125px;
+    width: 250px;
+}
+
+/************************************************************************************************/
+
+body > ul > li {
+    position: relative;
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    list-style: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 8px 0 8px 10px;
+    color: #444;
+}
+
+body > ul > li.group {
+    position: relative;
+    font-weight: bold;
+    color: #fff;
+    background: url(../img/default-bg.gif) repeat-x;
+    border-bottom: 1px solid #aaa;
+    text-shadow: #000 1px 1px 0;
+    font-size: 14px;
+    padding: 2px 10px;
+}
+
+body > ul > li.subgroup {
+    background: url(../img/nav-bg.gif) -10px repeat-x;
+    border-bottom: 1px solid #d9d9d9;
+    color: #666;
+}
+
+body > ul > li.group:first-child {
+    top: 0;
+    border-top: none;
+}
+
+body > ul > li > a {
+    margin: -8px 0 -8px -10px;
+    padding: 8px 32px 8px 10px;
+    text-decoration: none;
+    color: rgb(91, 128, 178);
+    font-size: 18px;
+    display: block;
+    background: url(../img/arrow.png) no-repeat right center;
+}
+
+/************************************************************************************************/
+
+body > ul > li.paginator {
+    color: #666;
+    background: url(../img/nav-bg-reverse.gif) repeat-x;
+    min-height: 16px;
+    padding: 6px 0 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+body > ul > li.paginator a:link,
+body > ul > li.paginator a:active,
+body > ul > li.paginator a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    margin: -6px 4px 0px 0px;
+}
+
+body > ul > li.paginator a.inactive,
+body > ul > li.paginator a.active {
+    background: none;
+}
+
+body > ul > li.paginator span a.inactive {
+    padding: 6px 12px;
+    margin: 10px 0px 10px 0;
+}
+
+body > ul > li.paginator span.text {
+    padding-right: 8px;
+    padding-left: 12px;
+}
+
+body > ul > li.paginator a.inactive {
+    border: 1px solid #ccc;
+    border-top:none;
+    border-bottom:none;
+    color: #5B80B2;
+    background: url(../img/nav-bg.gif) repeat-x;
+}
+
+body > ul > li.paginator span.float-right a.inactive {
+    border-right: none;
+}
+
+/************************************************************************************************/
+
+body > .breadcrumbs {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: absolute;
+    background: url(../img/nav-bg-reverse.gif) repeat-x;
+    color: #666;
+    top: 48px;
+    min-height: 12px;
+    max-height: 30px;
+    padding: 6px 0px 10px 8px;
+    font-size: 16px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #d9d9d9;
+    font-weight: bold;  
+}
+
+.breadcrumbs a:link,
+.breadcrumbs a:active,
+.breadcrumbs a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    padding: 6px 16px 6px 6px;
+    margin: -6px 4px 0px -6px;
+}
+
+.breadcrumbs a:active {
+    color: #036;
+}
+
+.breadcrumbs a.inactive, .breadcrumbs a.active {
+    background: none;
+}
+
+.breadcrumbs span {
+    padding-right: 12px;
+}
+
+.breadcrumbs a.active, .breadcrumbs span.active {
+    color: #666;
+}
+
+.breadcrumbs a.inactive, .breadcrumbs span.inactive {
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 0px;
+    margin-left: -1px;
+    border: 1px solid #ccc;
+    border-top:none;
+    padding-bottom: 4px;
+    color: #5B80B2;
+    background: url(../img/nav-bg.gif) repeat-x;
+}
+
+.breadcrumbs a.float-left {
+    margin-left: -13px;
+}
+
+.breadcrumbs a.active {
+    margin-left: -6px;
+    padding-right: 21px;
+}
+
+.breadcrumbs a#_recent.inactive {
+    padding-left: 12px;
+}
+.breadcrumbs a#_recent.active {
+    padding-left: 18px;
+}
+
+/************************************************************************************************/
+
+.submitline {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: url(../img/nav-bg-reverse.gif) repeat-x;
+    color: #666;
+    top: 48px;
+    min-height: 30px;
+    max-height: 30px;
+    padding: 6px 0px 10px 0px;
+    font-size: 16px;
+    border: 1px solid #d9d9d9;
+    border-width: 1px 0;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.submitline a:link, .submitline a:active, .submitline a:visited, .submitline input[type="submit"] {
+    text-decoration: none;
+    color: #5B80B2;
+    padding: 6px;
+    margin: -6px 6px 0px 6px;
+}
+
+.submitline a:active {
+    color: #036;
+}
+
+.submitline a.inactive, .submitline a.active {
+    background: none;
+}
+
+.submitline span {
+    padding-right: 12px;
+}
+
+.submitline a.active, .submitline span.active {
+    color: #666;
+}
+
+.submitline a.inactive, .submitline span.inactive {
+    color: #5B80B2;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-right: 0px;
+    margin-left: -1px;
+    border: 1px solid #ccc;
+    border-top:none;
+    padding-bottom: 4px;
+    background: url(../img/nav-bg.gif) repeat-x;
+}
+
+.submitline a.submit {
+    color: #fff;
+    background: url(../img/default-bg.gif) repeat-x 0 -1px;
+    text-shadow: #000 1px 1px 0;
+}
+
+.submitline a.delete {
+    color: #CC3434;
+    text-shadow: #fff 1px 1px 0;    
+}
+
+/************************************************************************************************/
+    
+
+input, textarea, select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    margin: 8px 0 0 0;
+    font-size: 16px;
+    font-weight: normal;
+    background: none;
+}
+
+/************************************************************************************************/
+
+body > .panel {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #fff;
+}
+
+.panel > fieldset {
+    position: relative;
+    margin: 0 0 20px 0;
+    padding: 0;
+    background: #FFFFFF;
+    border: none;
+    text-align: right;
+    font-size: 16px;
+}
+
+.row {
+    position: relative;
+    min-height: 42px;
+    text-align: left;
+    padding: 0 8px;
+}
+
+fieldset > .row:last-child {
+    border-bottom: none !important;
+}
+
+fieldset > .row:first-child {
+    border-top: none;
+}
+
+
+.row > input {
+    display: block;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 12px 10px 0 12px;
+    height: 40px;
+    background: none;
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+}
+
+.row > input.vDateField, .row > input.vTimeField {
+    width: 100%;
+}
+
+.row > input.vTimeField {
+    margin-top: 10px;
+}
+
+.row > input[type="checkbox"], .row > input[type="radiobutton"] {
+    width: 14px;
+    height: 24px;
+    -webkit-border-radius:0px;
+}
+
+.row span {
+    float: right;
+    margin-top: -20px;
+}
+
+.row > label.vCheckboxLabel {
+    float: left;
+    margin-left: 30px;
+    top: 24px;
+}
+
+.row > input.vCheckboxField {
+    position: relative;
+    top: 20px;
+    left: 2px;
+}
+
+.row > select {
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    margin: 10px 0 0 0;
+    padding: 12px 10px 0 12px;
+    height: auto;
+}
+
+.row > textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    margin: 0;
+    border: none;
+    padding: 12px 10px 0 12px;
+    height: 126px;
+    background: none;
+    -webkit-border-radius: 5px;
+    border: 1px solid #D9D9D9;
+}
+
+.row > label {
+    position: relative;
+    top: 8px;
+    padding: 0 3px;
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    background: #fff;
+    color: #333;
+    text-align: left;
+}
+
+.row > label.required {
+    font-weight: bold;
+}
+
+.row > ul.radiolist li {
+    list-style: none;
+}
+.row > ul.radiolist label {
+    position:absolute;
+    display:block;
+    color: #333;
+    font-size: 14px;
+    float: left;
+    margin-left: 30px;
+    margin-top: -16px;
+}
+.row > ul.inline {
+    margin-left:13px;
+    padding:0;
+}
+.row > ul.inline li {
+    padding: 2px;
+}
+
+.row ul:first-child {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    font-weight: normal;
+}
+.row > ul {
+    font-weight: bold;
+    margin-left: -10px;
+}
+
+.panel > h2 {
+    margin: 0;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: url(../img/default-bg.gif) repeat-x;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #aaa;
+    text-shadow: #000 1px 1px 0;
+}
+
+.panel > h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    text-shadow: #000 1px 1px 0;
+    background: none;
+}
+
+ul.errorlist, ul.errorlist li {
+    list-style: none;
+    color: #CC2830;
+    font-size: 10px;
+    margin: 0;
+    float: right;
+}
+
+ul.errorlist > li {
+    list-style: none;
+}
+
+/************************************************************************************************/
+
+#preloader {
+    display: none;
+    background-image: url(../img/default-bg.gif), url(../img/white.png),
+        url(../img/red.png), url(../img/arrow.png), url(../img/black.png),
+        url(../img/nav-bg.gif), url(../img/nav-bg-reverse.gif);
+}
