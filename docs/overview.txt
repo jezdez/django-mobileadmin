@@ -24,8 +24,8 @@ To install the mobileadmin app, follow these steps:
     3. Make sure ``'mobileadmin.loader.load_template_source'`` is in your
        TEMPLATE_LOADERS_ setting at the first position.
     4. Make sure ``'mobileadmin.middleware.MobileAdminMiddleware'`` is in your
-       MIDDLEWARE_CLASSES_ setting on the last position (or the place before the
-       last if you have installed the flat pages contrib app and its 
+       MIDDLEWARE_CLASSES_ setting on the last position (or the position before
+       the last if you have installed the flat pages contrib app and its 
        ``FlatpageFallbackMiddleware``)
     5. Make sure the MOBILEADMIN_MEDIA_PREFIX setting is set to the URL prefix
        for the mobileadmin media -- CSS, Javascript and images. Just like the
