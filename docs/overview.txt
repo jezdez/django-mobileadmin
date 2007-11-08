@@ -1,0 +1,47 @@
+===========================================================
+The Django admin interface optimized for iPhone/iPod touch.
+===========================================================
+
+This is an alternative admin interface for Django for use with the iPhone/iPod
+touch. Some would call it a theme or a skin, but actually it's more than that.
+Well, actually it misses some functionality of the normal admin interface.
+Anyway, it is automatically used for any request which comes from a
+MobileSafari based device by using a nifty midlleware/template construct.
+
+Hope you like it, Jannis.
+
+Installation
+============
+
+Get the source from the application site at::
+
+    http://code.google.com/p/django-mobileadmin/
+
+To install the mobileadmin app, follow these steps:
+
+    1. Follow the instructions in the INSTALL.txt file
+    2. Add ``'mobileadmin'`` to your INSTALLED_APPS_ setting.
+    3. Make sure ``'mobileadmin.loader.load_template_source'`` is in your
+       TEMPLATE_LOADERS_ setting at the first position.
+    4. Make sure ``'mobileadmin.middleware.MobileAdminMiddleware'`` is in your
+       MIDDLEWARE_CLASSES_ setting on the last place (or the place before the
+       last if you have installed the flat pages contrib app and its 
+       ``FlatpageFallbackMiddleware``)
+    5. Make sure the MOBILEADMIN_MEDIA_PREFIX setting is set to the URL prefix
+       for the mobileadmin media -- CSS, Javascript and images. Just like the
+       ADMIN_MEDIA_PREFIX_ but for the ``media`` directory of the mobileadmin app.
+       Please use a trailing slash.
+    6. Make sure you've installed the admin contrib app.
+
+.. _INSTALLED_APPS: http://www.djangoproject.com/documentation/settings/#installed-apps
+.. _TEMPLATE_LOADERS: http://www.djangoproject.com/documentation/settings/#template-loaders
+.. _MIDDLEWARE_CLASSES: http://www.djangoproject.com/documentation/settings/#middleware-classes
+.. _ADMIN_MEDIA_PREFIX: http://www.djangoproject.com/documentation/settings/#admin-media-prefix
+
+Support
+=======
+
+Please leave your `questions and problems`_ on the `designated Google Code site`_.
+
+.. _designated Google Code site: http://code.google.com/p/django-mobileadmin/
+.. _questions and problems: http://code.google.com/p/django-mobileadmin/issues/
