@@ -1,10 +1,10 @@
 {% load mobile_admin mobile_admin_modify %}
 {% output_all bound_field.form_fields %}
 {% if change %}
-	{% if bound_field.field.primary_key %}
-		{{ bound_field.original_value }}
-	{% endif %}
-	{% if bound_field.raw_id_admin %}
-		{% if bound_field.existing_display %}&nbsp;<strong>{{ bound_field.existing_display|escape|truncate_dot:20 }}</strong>{% endif %}
-	{% endif %}
+    {% if bound_field.field.primary_key %}
+        {{ bound_field.original_value }}
+    {% endif %}
+    {% if bound_field.raw_id_admin %}
+        {% if bound_field.existing_display %}&nbsp;<strong>{{ bound_field.existing_display|escape|truncate_dot:20 }}</strong>{% endif %}
+    {% endif %}
 {% endif %}

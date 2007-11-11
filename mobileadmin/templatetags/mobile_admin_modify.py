@@ -1,19 +1,15 @@
+import re
 from django import template
 from django.contrib.admin.views.main import AdminBoundField
-from django.template import loader
 from django.utils.text import capfirst
-from django.utils.html import strip_tags
 from django.utils.encoding import force_unicode
 from django.db import models
 from django.db.models.fields import Field
 from django.db.models.related import BoundRelatedObject
 from django.conf import settings
-import re
 
 register = template.Library()
-
 word_re = re.compile('[A-Z][a-z]+')
-absolute_url_re = re.compile(r'^(?:http(?:s)?:/)?/', re.IGNORECASE)
 
 def class_name_to_underscored(name):
     return u'_'.join([s.lower() for s in word_re.findall(name)[:-1]])
@@ -72,14 +68,14 @@ class FieldWidgetNode(template.Node):
             try:
                 field_class_name = klass.__name__
                 template_name = u"widget/%s.html" % class_name_to_underscored(field_class_name)
-                nodelist = loader.get_template(template_name).nodelist
+                nodelist = template.loader.get_template(template_name).nodelist
             except template.TemplateDoesNotExist:
                 super_klass = bool(klass.__bases__) and klass.__bases__[0] or None
                 if super_klass and super_klass != Field:
                     nodelist = cls.get_nodelist(super_klass)
                 else:
                     if not cls.default:
-                        cls.default = loader.get_template("widget/default.html").nodelist
+                        cls.default = template.loader.get_template("widget/default.html").nodelist
                     nodelist = cls.default
 
             cls.nodelists[klass] = nodelist
@@ -163,7 +159,7 @@ class EditInlineNode(template.Node):
         original = context.get('original', None)
         bound_related_object = relation.bind(context['form'], original, bound_related_object_class)
         context['bound_related_object'] = bound_related_object
-        t = loader.get_template(bound_related_object.template_name())
+        t = template.loader.get_template(bound_related_object.template_name())
         output = t.render(context)
         context.pop()
         return output
@@ -226,9 +222,3 @@ def auto_populated_field_script(auto_pop_fields, change = False):
                      f, field.name, add_values, field.max_length))
     return u''.join(t)
 auto_populated_field_script = register.simple_tag(auto_populated_field_script)
-
-def include_admin_script(script_path):
-    if not absolute_url_re.match(script_path):
-        script_path = '%s%s' % (settings.MOBILEADMIN_MEDIA_PREFIX, script_path)
-    return u'<script type="text/javascript" src="%s"></script>' % script_path
-include_admin_script = register.simple_tag(include_admin_script)

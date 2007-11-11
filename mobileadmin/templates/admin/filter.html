@@ -1,0 +1,5 @@
+{% load i18n %}
+<li class="group">{% blocktrans with title|escape as filter_title %} By {{ filter_title }} {% endblocktrans %}</li>
+{% for choice in choices %}
+<li><a {% if choice.selected %}style="color:#666;background:none;" {% endif %}href="{{ choice.query_string|iriencode }}">{{ choice.display|escape }}</a></li>
+{% endfor %}

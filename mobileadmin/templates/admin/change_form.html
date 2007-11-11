@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n mobile_admin_modify mobile_admin adminmedia %}
+{% load i18n mobile_admin_modify mobile_admin %}
 
 {% block extrahead %}{% include_admin_script "js/urlify.js" %}{% endblock %}
 
@@ -17,16 +17,19 @@
 
 {% block content %}
 <form target="_self" class="panel" selected="true" title="{{ title|capfirst }}" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{% if form_url %}{{ form_url }}{% else %}.{% endif %}" method="POST">
-{% if not add %}<h1>{{ original|escape|truncate_dot:35 }}</h1>{% endif %}
+{% if not add %}<h1>{{ title|escape|truncate_dot:35 }}: {{ original|escape|truncate_dot:35 }}</h1>{% endif %}
+{% if form.error_dict %}
+<h1 class="error">{% blocktrans count form.error_dict.items|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}</h1>
+{% endif %}
 {% for bound_field_set in bound_field_sets %}
-	{% if bound_field_set.name %}<h2>{{ bound_field_set.name }}</h2>{% endif %}
-	<fieldset>
-	{% for bound_field_line in bound_field_set %}
-	<div class="row">
-		{% admin_field_line bound_field_line %}
-	</div>
-	{% endfor %}
-	</fieldset>
+    {% if bound_field_set.name %}<h2>{{ bound_field_set.name }}</h2>{% endif %}
+    <fieldset>
+    {% for bound_field_line in bound_field_set %}
+    <div class="row">
+        {% admin_field_line bound_field_line %}
+    </div>
+    {% endfor %}
+    </fieldset>
 {% endfor %}
 {% block after_field_sets %}{% endblock %}
 
@@ -36,12 +39,12 @@
 {% submit_row %}
 
 {% if add %}
-	<script type="text/javascript">document.getElementById("{{ first_form_field_id }}").focus();</script>
+    <script type="text/javascript">document.getElementById("{{ first_form_field_id }}").focus();</script>
 {% endif %}
 {% if auto_populated_fields %}
-	<script type="text/javascript">
-	{% auto_populated_field_script auto_populated_fields change %}
-	</script>
+    <script type="text/javascript">
+    {% auto_populated_field_script auto_populated_fields change %}
+    </script>
 {% endif %}
 </form>
 {% endblock %}

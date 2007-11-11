@@ -5,30 +5,30 @@
 
 {% block content %}
 {% if perms_lacking %}
-	<div class="panel" selected="true">
-	<h1>{% blocktrans with object|escape as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h1>
-	<fieldset>
-	{% for obj in perms_lacking %}
-		<div class="row">
-			<label>{{ obj|escape }}</label>
-		</div>
-	{% endfor %}
-	</fieldset>
-	</div>
+    <div class="panel" selected="true">
+    <h1>{% blocktrans with object|escape as escaped_object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</h1>
+    <fieldset>
+    {% for obj in perms_lacking %}
+        <div class="row">
+            <label>{{ obj|escape }}</label>
+        </div>
+    {% endfor %}
+    </fieldset>
+    </div>
 {% else %}
-	<form action="" method="post" class="panel" selected="true">
-	<h1>{% blocktrans with object|escape as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</h1>
-	<fieldset>
-	<div class="row">
-		<ul>
-		{{ deleted_objects|simple_unordered_list }}
-		</ul>
-	</div>
-	</fieldset>
-	<input type="hidden" name="post" value="yes" />
-	<div class="submitline" selected="true">
-		<a href="#" onclick="document.forms[0].submit()" class="inactive float-right">{% trans "Yes, I'm sure" %}</a>
-	</div>
-	</form>
+    <form action="" method="post" class="panel" selected="true">
+    <h1>{% blocktrans with object|escape as escaped_object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</h1>
+    <fieldset>
+    <div class="row">
+        <ul>
+        {{ deleted_objects|simple_unordered_list }}
+        </ul>
+    </div>
+    </fieldset>
+    <input type="hidden" name="post" value="yes" />
+    <div class="submitline" selected="true">
+        <a href="#" onclick="document.forms[0].submit()" class="inactive float-right">{% trans "Yes, I'm sure" %}</a>
+    </div>
+    </form>
 {% endif %}
 {% endblock %}

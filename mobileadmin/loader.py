@@ -2,7 +2,7 @@ import os
 from django.conf import settings
 from django.template import TemplateDoesNotExist
 from django.utils._os import safe_join
-from mobileadmin.middleware import get_thread_var
+from middleware import get_thread_var
 
 TEMPLATE_DIR =  os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates')
 
@@ -15,11 +15,11 @@ def load_template_source(template_name, template_dirs=None):
     """
     tried = []
     filepath = safe_join(TEMPLATE_DIR, template_name)
-    try:
-        if get_thread_var('use_mobile_templates'):
+    if get_thread_var('use_mobile_templates'):
+        try:
             return (open(filepath).read().decode(settings.FILE_CHARSET), "mobile:%s" % filepath)
-    except IOError:
-        tried.append(filepath)
+        except IOError:
+            tried.append(filepath)
     if tried:
         error_msg = "Tried %s" % tried
     else:

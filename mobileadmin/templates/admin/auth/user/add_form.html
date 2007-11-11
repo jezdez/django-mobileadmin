@@ -5,18 +5,18 @@
 <h1>{% trans "First, enter a username and password. Then, you'll be able to edit more user options." %}</h1>
 <fieldset>
 <div class="row">
-	{{ form.username.html_error_list }}
-	<label for="id_username" class="required">{% trans 'Username' %}:</label> {{ form.username }}
+    {{ form.username.html_error_list }}
+    <label for="id_username" class="required">{% trans 'Username' %}:</label> {{ form.username }}
 </div>
 
 <div class="row">
-	{{ form.password1.html_error_list }}
-	<label for="id_password1" class="required">{% trans 'Password' %}:</label> {{ form.password1 }}
+    {{ form.password1.html_error_list }}
+    <label for="id_password1" class="required">{% trans 'Password' %}:</label> {{ form.password1 }}
 </div>
 
 <div class="row">
-	<label for="id_password2" class="required">{% trans 'Password (again)' %}:</label> {{ form.password2 }}
-	{{ form.password2.html_error_list }}
+    <label for="id_password2" class="required">{% trans 'Password (again)' %}:</label> {{ form.password2 }}
+    {{ form.password2.html_error_list }}
 </div>
 </fieldset>
 {% endblock %}

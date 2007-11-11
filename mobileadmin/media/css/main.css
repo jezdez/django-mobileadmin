@@ -22,22 +22,18 @@ body {
     clear: both;
 }
 
-h1.error {
-    color: #CC2830;
-}
-
 body > *:not(.toolbar) {
     display: none;
     position: absolute;
     margin: 0;
     padding: 0;
     left: 0;
-    top: 78px;
+    top: 100px;
     width: 100%;
     min-height: 372px;
 }
 
-body[orient="landscape"] > *:not(.toolbar) {
+body[orient="landscape"] > *:not(.toolbar|.breadcrumb) {
     min-height: 268px;
 }
 
@@ -45,35 +41,32 @@ body > *[selected="true"] {
     display: block;
 }
 
-/************************************************************************************************/
-
 body > .toolbar {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     border-top: 1px solid #6d84a2;
-    padding: 3px 7px;
-    height: 48px;
+    padding: 8px 7px 3px 2px;
+    height: 60px;
     background: #417690 repeat-x;
+    vertical-align: middle;
 }
 
 .toolbar > h1 {
     float: left;
     overflow: hidden;
-    margin: 3px 0px 0px;
-    padding: 15px 1px;
-    height: 48px;
-    font-size: 18px;
+    padding: 8px 4px 5px 2px;
+    font-size: 20px;
     font-weight: bold;
     text-shadow: #30586C 0px -1px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-
 }
 
 .toolbar > h1 a {
-    color: #F4F379;
+    color: #f4f379;
     text-decoration: none;
+    padding: 5px 6px;
 }
 
 .toolbar > h1 a:active {
@@ -81,38 +74,36 @@ body > .toolbar {
     background-color: none;
 }
 
-.toolbar > h2 {
-    font-size: 14px;    
+.toolbar div.greeting {
+    color: #f4f379;
+    font-size: 14px;
     font-weight: bold;
-    float: right;
-    margin: 0 4px;
+    padding: 1px 4px;
     line-height: 20px;
 }
 
-.toolbar > h2 a, .toolbar > h2 a:active, .toolbar > h2 a:visited {
+.toolbar > div.user-tools a,
+.toolbar > div.user-tools a:active,
+.toolbar > div.user-tools a:visited {
+    line-height: 20px;
+    padding: 1px 4px;
+    font-size: 14px;    
+    font-weight: bold;
     text-decoration: none;
     color: #fff;
     text-shadow: #000 1px 1px 0;
-    display: block;
     text-align: right;
+    float: right;
 }
-
-
-body[orient="landscape"] > .toolbar > h1 {
-    margin-left: -125px;
-    width: 250px;
-}
-
-/************************************************************************************************/
 
 body > ul > li {
     position: relative;
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     list-style: none;
     border-bottom: 1px solid #d9d9d9;
-    padding: 8px 0 8px 10px;
+    padding: 10px 0 10px 10px;
     color: #444;
 }
 
@@ -123,8 +114,8 @@ body > ul > li.group {
     background: url(../img/default-bg.gif) repeat-x;
     border-bottom: 1px solid #aaa;
     text-shadow: #000 1px 1px 0;
-    font-size: 14px;
-    padding: 2px 10px;
+    font-size: 16px;
+    padding: 3px 10px 2px;
 }
 
 body > ul > li.subgroup {
@@ -139,23 +130,21 @@ body > ul > li.group:first-child {
 }
 
 body > ul > li > a {
-    margin: -8px 0 -8px -10px;
-    padding: 8px 32px 8px 10px;
+    margin: -10px 0 -10px -10px;
+    padding: 10px 32px 10px 10px;
     text-decoration: none;
-    color: rgb(91, 128, 178);
-    font-size: 18px;
+    color: #5B80B2;
+    font-size: 20px;
     display: block;
     background: url(../img/arrow.png) no-repeat right center;
 }
 
-/************************************************************************************************/
-
 body > ul > li.paginator {
     color: #666;
-    background: url(../img/nav-bg-reverse.gif) repeat-x;
-    min-height: 16px;
-    padding: 6px 0 8px 0;
-    font-size: 16px;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x top;
+    min-height: 21px;
+    padding: 9px 0;
+    font-size: 18px;
     font-weight: bold;
     margin: 0px;
 }
@@ -166,7 +155,7 @@ body > ul > li.paginator a:visited {
     text-decoration: none;
     color: #5B80B2;
     background: none;
-    margin: -6px 4px 0px 0px;
+    margin: -6px 8px 0px -10px;
 }
 
 body > ul > li.paginator a.inactive,
@@ -174,29 +163,37 @@ body > ul > li.paginator a.active {
     background: none;
 }
 
-body > ul > li.paginator span a.inactive {
-    padding: 6px 12px;
-    margin: 10px 0px 10px 0;
+body > ul > li.paginator span a.inactive,
+body > ul > li.paginator span a.active {
+    padding: 9px 12px;
+    margin: -9px -1px 0px 0px;
 }
 
-body > ul > li.paginator span.text {
-    padding-right: 8px;
-    padding-left: 12px;
+body > ul > li.paginator span a.active {
+    color: #666;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 13px;
 }
 
 body > ul > li.paginator a.inactive {
     border: 1px solid #ccc;
     border-top:none;
-    border-bottom:none;
     color: #5B80B2;
-    background: url(../img/nav-bg.gif) repeat-x;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
 }
 
 body > ul > li.paginator span.float-right a.inactive {
     border-right: none;
 }
 
-/************************************************************************************************/
+body > ul > li.paginator span.active {
+    padding-right: 12px;
+}
+
+body > ul > li.paginator span a.showall {
+    margin: 0px;
+}
 
 body > .breadcrumbs {
     box-sizing: border-box;
@@ -205,11 +202,11 @@ body > .breadcrumbs {
     position: absolute;
     background: url(../img/nav-bg-reverse.gif) repeat-x;
     color: #666;
-    top: 48px;
-    min-height: 12px;
-    max-height: 30px;
-    padding: 6px 0px 10px 8px;
-    font-size: 16px;
+    top: 60px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 9px 0px 9px 8px;
+    font-size: 18px;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #d9d9d9;
     font-weight: bold;  
@@ -221,15 +218,16 @@ body > .breadcrumbs {
     text-decoration: none;
     color: #5B80B2;
     background: none;
-    padding: 6px 16px 6px 6px;
-    margin: -6px 4px 0px -6px;
+    padding: 9px 16px 9px 10px;
+    margin: -9px 4px 0px -6px;
 }
 
 .breadcrumbs a:active {
     color: #036;
 }
 
-.breadcrumbs a.inactive, .breadcrumbs a.active {
+.breadcrumbs a.active,
+.breadcrumbs a.inactive {
     background: none;
 }
 
@@ -237,62 +235,72 @@ body > .breadcrumbs {
     padding-right: 12px;
 }
 
-.breadcrumbs a.active, .breadcrumbs span.active {
+.breadcrumbs a.active,
+.breadcrumbs span.active {
     color: #666;
 }
 
-.breadcrumbs a.inactive, .breadcrumbs span.inactive {
+.breadcrumbs a.inactive,
+.breadcrumbs span.inactive {
     padding-right: 12px;
     padding-left: 12px;
+    padding-bottom: 8px;
     margin-right: 0px;
     margin-left: -1px;
     border: 1px solid #ccc;
     border-top:none;
-    padding-bottom: 4px;
     color: #5B80B2;
-    background: url(../img/nav-bg.gif) repeat-x;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
 }
 
 .breadcrumbs a.float-left {
-    margin-left: -13px;
+    margin-left: -11px;
+}
+
+.breadcrumbs a.float-right {
+    text-align: right;
 }
 
 .breadcrumbs a.active {
-    margin-left: -6px;
+    margin-left: -8px;
     padding-right: 21px;
 }
 
 .breadcrumbs a#_recent.inactive {
     padding-left: 12px;
 }
-.breadcrumbs a#_recent.active {
-    padding-left: 18px;
+.breadcrumbs a#_recent.active,
+.breadcrumbs a#_filter.active {
+    padding-left: 22px;
+    margin-left: 0;
+    padding-right: 9px;
 }
-
-/************************************************************************************************/
 
 .submitline {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    background: url(../img/nav-bg-reverse.gif) repeat-x;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x;
     color: #666;
     top: 48px;
-    min-height: 30px;
-    max-height: 30px;
-    padding: 6px 0px 10px 0px;
-    font-size: 16px;
+    min-height: 40px;
+    max-height: 40px;
+    padding: 9px 0px 9px 8px;
+    font-size: 18px;
     border: 1px solid #d9d9d9;
     border-width: 1px 0;
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
-.submitline a:link, .submitline a:active, .submitline a:visited, .submitline input[type="submit"] {
+.submitline a:link,
+.submitline a:active,
+.submitline a:visited {
     text-decoration: none;
     color: #5B80B2;
     padding: 6px;
     margin: -6px 6px 0px 6px;
+    padding: 9px 16px 9px 10px;
+    margin: -9px 4px 0px -6px;
 }
 
 .submitline a:active {
@@ -313,20 +321,24 @@ body > .breadcrumbs {
 
 .submitline a.inactive, .submitline span.inactive {
     color: #5B80B2;
-    padding-right: 8px;
-    padding-left: 8px;
+    padding-right: 12px;
+    padding-left: 12px;
+    padding-bottom: 8px;
     margin-right: 0px;
     margin-left: -1px;
     border: 1px solid #ccc;
     border-top:none;
-    padding-bottom: 4px;
-    background: url(../img/nav-bg.gif) repeat-x;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+.submitline a.float-left {
+    margin-left: -11px;
 }
 
 .submitline a.submit {
     color: #fff;
-    background: url(../img/default-bg.gif) repeat-x 0 -1px;
-    text-shadow: #000 1px 1px 0;
+    background: #BCD1E8 url(../img/default-bg.gif) repeat-x bottom;
+    text-shadow: #BCD1E8 1px 1px 0;
 }
 
 .submitline a.delete {
@@ -334,8 +346,51 @@ body > .breadcrumbs {
     text-shadow: #fff 1px 1px 0;    
 }
 
-/************************************************************************************************/
-    
+/***/
+
+body > ul > li.searchbar {
+    color: #666;
+    background: #fff url(../img/nav-bg-reverse.gif) repeat-x top;
+    min-height: 21px;
+    padding: 9px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+body > ul > li.searchbar a:link,
+body > ul > li.searchbar a:active,
+body > ul > li.searchbar a:visited {
+    text-decoration: none;
+    color: #5B80B2;
+    background: none;
+    margin: -6px 8px 0px -10px;
+}
+
+body > ul > li.searchbar span a.inactive,
+body > ul > li.searchbar span a.active {
+    padding: 9px 12px;
+    margin: -9px 0px 0px;
+}
+body > ul > li.searchbar span.float-left a.inactive {
+    margin-right: 4px;
+}
+
+body > ul > li.searchbar a.inactive {
+    border: 1px solid #ccc;
+    border-top:none;
+    color: #5B80B2;
+    background: #fff url(../img/nav-bg.gif) repeat-x bottom;
+}
+
+body > ul > li.searchbar span.float-right a.inactive {
+    border-right: none;
+}
+
+body > ul > li.searchbar span.active {
+    padding-right: 12px;
+}
+
+/***/
 
 input, textarea, select {
     box-sizing: border-box;
@@ -346,8 +401,6 @@ input, textarea, select {
     font-weight: normal;
     background: none;
 }
-
-/************************************************************************************************/
 
 body > .panel {
     box-sizing: border-box;
@@ -381,7 +434,7 @@ fieldset > .row:first-child {
 }
 
 
-.row > input {
+.row > input, #search > input[type="text"] {
     display: block;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -393,6 +446,15 @@ fieldset > .row:first-child {
     border: 1px solid #D9D9D9;
 }
 
+#search > input[type="text"] {
+    margin-right: 20px;
+}
+
+#search {
+    margin: 5px 10px 5px 0px;
+    background: none;
+}
+
 .row > input.vDateField, .row > input.vTimeField {
     width: 100%;
 }
@@ -401,10 +463,13 @@ fieldset > .row:first-child {
     margin-top: 10px;
 }
 
-.row > input[type="checkbox"], .row > input[type="radiobutton"] {
-    width: 14px;
-    height: 24px;
-    -webkit-border-radius:0px;
+.row > input[type="checkbox"], .row > input[type="radio"], .radiolist input {
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    border: 0;
+    -webkit-border-radius:10px;
+    background: #fff url(../img/default-bg.gif) repeat-x bottom;
 }
 
 .row span {
@@ -414,8 +479,8 @@ fieldset > .row:first-child {
 
 .row > label.vCheckboxLabel {
     float: left;
-    margin-left: 30px;
-    top: 24px;
+    margin-left: 40px;
+    top: 26px;
 }
 
 .row > input.vCheckboxField {
@@ -428,8 +493,8 @@ fieldset > .row:first-child {
     -webkit-border-radius: 5px;
     border: 1px solid #D9D9D9;
     margin: 10px 0 0 0;
-    padding: 12px 10px 0 12px;
-    height: auto;
+    padding: 12px 10px 10 12px;
+    height: 30px;
 }
 
 .row > textarea {
@@ -445,15 +510,15 @@ fieldset > .row:first-child {
     border: 1px solid #D9D9D9;
 }
 
-.row > label {
+.row > label, #search > label {
     position: relative;
-    top: 8px;
+    top: 9px;
     padding: 0 3px;
     margin-left: 10px;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     background: #fff;
-    color: #333;
+    color: #666;
     text-align: left;
 }
 
@@ -470,8 +535,8 @@ fieldset > .row:first-child {
     color: #333;
     font-size: 14px;
     float: left;
-    margin-left: 30px;
-    margin-top: -16px;
+    margin-left: 40px;
+    margin-top: -24px;
 }
 .row > ul.inline {
     margin-left:13px;
@@ -514,10 +579,14 @@ fieldset > .row:first-child {
     background: none;
 }
 
+.panel > h1.error {
+    color: #CC2830;
+}
+
 ul.errorlist, ul.errorlist li {
     list-style: none;
-    color: #CC2830;
-    font-size: 10px;
+    color: #cc2830;
+    font-size: 12px;
     margin: 0;
     float: right;
 }
@@ -526,11 +595,9 @@ ul.errorlist > li {
     list-style: none;
 }
 
-/************************************************************************************************/
-
 #preloader {
     display: none;
-    background-image: url(../img/default-bg.gif), url(../img/white.png),
-        url(../img/red.png), url(../img/arrow.png), url(../img/black.png),
+    background-image: url(../img/default-bg.gif), url(../img/default-bg-reverse.gif),
+        url(../img/icon_searchbox.png), url(../img/arrow.png),
         url(../img/nav-bg.gif), url(../img/nav-bg-reverse.gif);
 }

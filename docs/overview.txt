@@ -4,9 +4,9 @@ The Django admin interface optimized for iPhone/iPod touch.
 
 This is an alternative admin interface for Django for use with the iPhone/iPod
 touch. Some would call it a theme or a skin, but actually it's more than that.
-Well, actually it misses some functionality of the normal admin interface.
-Anyway, it is automatically used for any request which comes from a
-MobileSafari based device by using a nifty midlleware/template construct.
+It resembles almost all features of the normal Django admin interface and is
+automatically used for any request which comes from a MobileSafari based
+device by using a nifty midlleware/template construct.
 
 Hope you like it, Jannis.
 
@@ -37,6 +37,20 @@ To install the mobileadmin app, follow these steps:
 .. _TEMPLATE_LOADERS: http://www.djangoproject.com/documentation/settings/#template-loaders
 .. _MIDDLEWARE_CLASSES: http://www.djangoproject.com/documentation/settings/#middleware-classes
 .. _ADMIN_MEDIA_PREFIX: http://www.djangoproject.com/documentation/settings/#admin-media-prefix
+
+Media path
+==========
+
+Please feel free to use a nice little helper to find the path to mobileadmin's
+media directory. If you are using Django (or any other Python software) to
+serve static files (which you shouldn't in production) just use::
+
+    ``from mobileadmin import MOBILEADMIN_MEDIA_PATH``
+
+You now have the full (platform-independent) path to the media directory of
+mobileadmin in the variable ``MOBILEADMIN_MEDIA_PATH``. This makes updating
+mobileadmin much easier for you, since you now don't have to bother about
+different locations of the media directory.
 
 Support
 =======

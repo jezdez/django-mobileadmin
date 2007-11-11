@@ -2,28 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}">
 <head>
 <title>{% block title %}{% trans 'Django administration' %}{% endblock %}</title>
-<link rel="stylesheet" type="text/css" href="" />
+{% include_admin_script "js/base.js" %}
+<link rel="stylesheet" type="text/css" href="{% mobileadmin_media_prefix %}css/main.css" />
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 <meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-<style type="text/css" media="screen">@import "{% mobileadmin_media_prefix %}css/main.css";</style>
 {% block extrahead %}{% endblock %}
 {% block extrastyle %}{% endblock %}
 </head>
 
 <body>
-	<div class="toolbar">
-		<h1><a href="{% get_admin_root %}">{% filter truncate_dot:15 %}{% trans 'Django administration' %}{% endfilter %}</a></h1>
-		{% block tools %}
-		{% if user.is_authenticated and user.is_staff %}
-		<h2>
-			<a href="{% get_admin_root %}logout/">{% trans "Logout" %}</a>
-			<a href="{% get_admin_root %}password_change/" target="_self">{% trans 'Change password' %}</a>
-		</h2>
-		{% endif %}
-		{% endblock %}
-	</div>
-	<div class="breadcrumbs" selected="true">{% block breadcrumbs %}{% endblock %}</div>
-	{% block content %}{{ content }}{% endblock %}
+    <div class="toolbar">
+        <h1><a href="{% get_admin_root %}">Django</a></h1>
+        {% block tools %}
+        {% if user.is_authenticated and user.is_staff %}
+        <div class="user-tools float-right">
+            <a href="{% get_admin_root %}logout/">{% trans "Logout" %}</a>
+            <a href="{% get_admin_root %}password_change/">{% trans 'Change password' %}</a>
+        </div>
+        <div class="greeting float-right">
+            {% trans 'Welcome,' %} {% if user.first_name %}{{ user.first_name|escape }}{% else %}{{ user.username }}{% endif %}
+        </div>
+        {% endif %}
+        {% endblock %}
+    </div>
+    <div class="breadcrumbs" selected="true">{% block breadcrumbs %}{% endblock %}</div>
+    {% block content %}{{ content }}{% endblock %}
 </body>
 </html>
 {% endspaceless %}
