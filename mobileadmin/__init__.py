@@ -6,4 +6,4 @@ import os
 # with that you always get the most current version of the media files
 MOBILEADMIN_MEDIA_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'media')
 
-VERSION = (0, 2, None)
+VERSION = (0, 2, ".1")

@@ -21,8 +21,10 @@
     <fieldset>
     <div class="row">
         <ul>
+        {% autoescape off %}
         {{ deleted_objects|simple_unordered_list }}
-        </ul>
+        {% endautoescape %}
+        </ul>        
     </div>
     </fieldset>
     <input type="hidden" name="post" value="yes" />
