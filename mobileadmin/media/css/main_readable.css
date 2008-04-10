@@ -58,7 +58,6 @@ body > .toolbar {
     padding: 8px 4px 5px 2px;
     font-size: 20px;
     font-weight: bold;
-    text-shadow: #30586C 0px -1px 0;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -91,7 +90,6 @@ body > .toolbar {
     font-weight: bold;
     text-decoration: none;
     color: #fff;
-    text-shadow: #000 1px 1px 0;
     text-align: right;
     float: right;
 }
@@ -113,7 +111,6 @@ body > ul > li.group {
     color: #fff;
     background: url(../img/default-bg.gif) repeat-x;
     border-bottom: 1px solid #aaa;
-    text-shadow: #000 1px 1px 0;
     font-size: 16px;
     padding: 3px 10px 2px;
 }
@@ -343,7 +340,6 @@ body > .breadcrumbs {
 
 .submitline a.delete {
     color: #CC3434;
-    text-shadow: #fff 1px 1px 0;    
 }
 
 /***/
@@ -566,7 +562,6 @@ fieldset > .row:first-child {
     background: url(../img/default-bg.gif) repeat-x;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #aaa;
-    text-shadow: #000 1px 1px 0;
 }
 
 .panel > h1 {
@@ -575,7 +570,6 @@ fieldset > .row:first-child {
     font-size: 16px;
     font-weight: bold;
     color: #666;
-    text-shadow: #000 1px 1px 0;
     background: none;
 }
 
