@@ -3,14 +3,14 @@ from django import template
 from django.utils.encoding import force_unicode
 from django.utils.html import strip_tags
 from django.core.urlresolvers import reverse, NoReverseMatch
-from django.conf import settings
+from mobileadmin.conf import settings
 
 register = template.Library()
 absolute_url_re = re.compile(r'^(?:http(?:s)?:/)?/', re.IGNORECASE)
 
 def mobileadmin_media_prefix():
     try:
-        return settings.MOBILEADMIN_MEDIA_PREFIX
+        return settings.MEDIA_PREFIX
     except AttributeError:
         return ''
 mobileadmin_media_prefix = register.simple_tag(mobileadmin_media_prefix)
@@ -76,6 +76,6 @@ register.filter(simple_unordered_list)
 
 def include_admin_script(script_path):
     if not absolute_url_re.match(script_path):
-        script_path = '%s%s' % (settings.MOBILEADMIN_MEDIA_PREFIX, script_path)
+        script_path = '%s%s' % (settings.MEDIA_PREFIX, script_path)
     return u'<script type="text/javascript" src="%s"></script>' % script_path
 include_admin_script = register.simple_tag(include_admin_script)
