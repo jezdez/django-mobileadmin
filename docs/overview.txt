@@ -48,9 +48,9 @@ serve static files (which you shouldn't in production) just use for example::
 
 You now have the full (platform-independent) path to the media directory of
 mobileadmin in the variable ``mobileadmin_media_path`` and the default URL
-prefix for the mobileadmin media -- CSS, Javascript and images -- in
-``mobileadmin_media_prefix``. Just like the ADMIN_MEDIA_PREFIX_ but for the
-``media`` directory of the mobileadmin app.
+prefix (``'/mobileadmin_media/'``) for the mobileadmin media -- CSS, Javascript
+and images -- in ``mobileadmin_media_prefix``. Just like the
+ADMIN_MEDIA_PREFIX_ but for the ``media`` directory of the mobileadmin app.
 
 You can of course optionally override the default URL prefix by setting
 a ``MOBILEADMIN_MEDIA_PREFIX`` in the settings.py file of your Django site.
@@ -69,15 +69,13 @@ code to the URLConf (``urls.py``) of your Django site::
     from mobileadmin.conf import settings
     
     urlpatterns += patterns('django.views.static',
-        url(r'^%s/(?P<path>.*)$' % settings.MEDIA_PREFIX, 'serve', {
-            'document_root': settings.MEDIA_PATH
-        }),
+        (settings.MEDIA_REGEX, 'serve', {'document_root': settings.MEDIA_PATH}),
     )
 
 See how mobileadmin's own settings module is loaded at the top of the snippet
-and is used to get the ``MEDIA_PREFIX`` prefix of mobileadmin that defaults to
-``'/mobileadmin_media/'``. Besides it lets you get the platform-independent
-filesystem path to the media files ``MEDIA_PATH``.
+that enables you to obtain a ready-made regex for the static files
+(``MEDIA_REGEX``) and the platform-independent filesystem path to the media
+files (``MEDIA_PATH``).
 
 Support
 =======

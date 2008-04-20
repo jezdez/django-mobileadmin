@@ -4,7 +4,7 @@
 {% block breadcrumbs %}
     <a id="_objectlist" href="javascript:;" class="float-left active">{{ cl.opts.verbose_name_plural|escape|capfirst }}</a>
     <a href="add/" class="float-right inactive">{% trans "Add" %}</a>
-    {% if cl.lookup_opts.admin.search_fields or cl.has_filters %}<a id="_filter" href="javascript:;" class="float-right inactive"><img src="{% mobileadmin_media_prefix %}img/search.png" /></a>{% endif %}
+    {% if cl.lookup_opts.admin.search_fields or cl.has_filters %}<a id="_filter" href="javascript:;" class="float-right inactive"><img src="{% mobileadmin_media_prefix "img/search.png" %}" /></a>{% endif %}
 {% endblock %}
 
 {% block content %}

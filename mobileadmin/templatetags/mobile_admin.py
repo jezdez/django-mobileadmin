@@ -1,3 +1,4 @@
+import os
 import re
 from django import template
 from django.utils.encoding import force_unicode
@@ -8,9 +9,15 @@ from mobileadmin.conf import settings
 register = template.Library()
 absolute_url_re = re.compile(r'^(?:http(?:s)?:/)?/', re.IGNORECASE)
 
-def mobileadmin_media_prefix():
+def mobileadmin_media_prefix(file_path=None):
     try:
-        return settings.MEDIA_PREFIX
+        media_prefix = settings.MEDIA_PREFIX
+        if file_path is not None:
+            media_prefix = os.path.join(media_prefix, file_path)
+        if not media_prefix.startswith('/'):
+            return '/%s' % media_prefix
+        return media_prefix
+
     except AttributeError:
         return ''
 mobileadmin_media_prefix = register.simple_tag(mobileadmin_media_prefix)
@@ -76,6 +83,8 @@ register.filter(simple_unordered_list)
 
 def include_admin_script(script_path):
     if not absolute_url_re.match(script_path):
-        script_path = '%s%s' % (settings.MEDIA_PREFIX, script_path)
+        script_path = os.path.join(settings.MEDIA_PREFIX, script_path)
+        if not script_path.startswith('/'):
+            script_path = '/%s' % script_path
     return u'<script type="text/javascript" src="%s"></script>' % script_path
 include_admin_script = register.simple_tag(include_admin_script)
