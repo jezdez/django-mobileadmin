@@ -27,11 +27,7 @@ To install the mobileadmin app, follow these steps:
        MIDDLEWARE_CLASSES_ setting on the last position (or the position before
        the last if you have installed the flat pages contrib app and its 
        ``FlatpageFallbackMiddleware``)
-    5. Make sure the MOBILEADMIN_MEDIA_PREFIX setting is set to the URL prefix
-       for the mobileadmin media -- CSS, Javascript and images. Just like the
-       ADMIN_MEDIA_PREFIX_ but for the ``media`` directory of the mobileadmin app.
-       Please use a trailing slash.
-    6. Make sure you've installed the admin contrib app.
+    5. Make sure you've installed the admin contrib app.
 
 .. _INSTALLED_APPS: http://www.djangoproject.com/documentation/settings/#installed-apps
 .. _TEMPLATE_LOADERS: http://www.djangoproject.com/documentation/settings/#template-loaders
@@ -41,16 +37,47 @@ To install the mobileadmin app, follow these steps:
 Media path
 ==========
 
-Please feel free to use a nice little helper to find the path to mobileadmin's
+Please feel free to use some nice little helpers to find the path to mobileadmin's
 media directory. If you are using Django (or any other Python software) to
-serve static files (which you shouldn't in production) just use::
+serve static files (which you shouldn't in production) just use for example::
 
-    ``from mobileadmin import MOBILEADMIN_MEDIA_PATH``
+    from mobileadmin.conf import settings
+
+    mobileadmin_media_path = settings.MEDIA_PATH
+    mobileadmin_media_prefix = settings.MEDIA_PREFIX
 
 You now have the full (platform-independent) path to the media directory of
-mobileadmin in the variable ``MOBILEADMIN_MEDIA_PATH``. This makes updating
-mobileadmin much easier for you, since you now don't have to bother about
-different locations of the media directory.
+mobileadmin in the variable ``mobileadmin_media_path`` and the default URL
+prefix for the mobileadmin media -- CSS, Javascript and images -- in
+``mobileadmin_media_prefix``. Just like the ADMIN_MEDIA_PREFIX_ but for the
+``media`` directory of the mobileadmin app.
+
+You can of course optionally override the default URL prefix by setting
+a ``MOBILEADMIN_MEDIA_PREFIX`` in the settings.py file of your Django site.
+Please use a trailing slash. This makes updating mobileadmin much easier for
+you, since you now don't have to bother about different locations of the media
+directory. 
+
+Serving mobileadmin's static media with Django
+---------------------------------------------- 
+
+Even though using Django's ability to serve static files is strongly **not
+recommended** for live production servers, it might be helpful to bring up
+mobileadmin for a test drive or an intranet website. Just add the following
+code to the URLConf (``urls.py``) of your Django site::
+
+    from mobileadmin.conf import settings
+    
+    urlpatterns += patterns('django.views.static',
+        url(r'^%s/(?P<path>.*)$' % settings.MEDIA_PREFIX, 'serve', {
+            'document_root': settings.MEDIA_PATH
+        }),
+    )
+
+See how mobileadmin's own settings module is loaded at the top of the snippet
+and is used to get the ``MEDIA_PREFIX`` prefix of mobileadmin that defaults to
+``'/mobileadmin_media/'``. Besides it lets you get the platform-independent
+filesystem path to the media files ``MEDIA_PATH``.
 
 Support
 =======
