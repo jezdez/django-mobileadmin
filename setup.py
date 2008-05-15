@@ -2,20 +2,14 @@ import os
 from distutils.core import setup
 from distutils.command.install import INSTALL_SCHEMES
 
-app_name = 'mobileadmin'
+app_name = "mobileadmin"
+version = "0.3.1"
 
 # Tell distutils to put the data_files in platform-specific installation
 # locations. See here for an explanation:
 # http://groups.google.com/group/comp.lang.python/browse_thread/thread/35ec7b2fed36eaec/2105ee4d9e8042cb
 for scheme in INSTALL_SCHEMES.values():
     scheme['data'] = scheme['purelib']
-
-# Dynamically calculate the version based on app_name.VERSION.
-version_tuple = __import__(app_name).VERSION
-if version_tuple[2] is not None:
-    version = "%d.%d%s" % version_tuple
-else:
-    version = "%d.%d" % version_tuple[:2]
 
 # Compile the list of packages available, because distutils doesn't have
 # an easy way to do this.
@@ -47,7 +41,6 @@ setup(name=app_name,
       package_dir={app_name: app_name},
       packages=packages,
       package_data={app_name: data_files},
-      zip_safe=False,
       classifiers=['Development Status :: 4 - Beta',
                    'Environment :: Web Environment',
                    'Intended Audience :: Developers',
@@ -55,4 +48,5 @@ setup(name=app_name,
                    'Operating System :: OS Independent',
                    'Programming Language :: Python',
                    'Topic :: Utilities'],
+      zip_safe=False,
       )

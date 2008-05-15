@@ -9,15 +9,14 @@ from mobileadmin.conf import settings
 register = template.Library()
 absolute_url_re = re.compile(r'^(?:http(?:s)?:/)?/', re.IGNORECASE)
 
-def mobileadmin_media_prefix(file_path=None):
-    try:
-        media_prefix = settings.MEDIA_PREFIX
-        if file_path is not None:
-            media_prefix = os.path.join(media_prefix, file_path)
-        if not media_prefix.startswith('/'):
-            return '/%s' % media_prefix
-        return media_prefix
+def urljoin(url, path):
+    url = url.rstrip('/')
+    path = path.lstrip('/')
+    return '/'.join((url, path))
 
+def mobileadmin_media_prefix(file_path=''):
+    try:
+        return urljoin(settings.MEDIA_PREFIX, file_path)
     except AttributeError:
         return ''
 mobileadmin_media_prefix = register.simple_tag(mobileadmin_media_prefix)
