@@ -5,10 +5,16 @@ This is used later on to load special mobile-admin templates.
 
 """
 
-import os, re
-from django.core.urlresolvers import reverse, NoReverseMatch
+import os
+import re
+import time
 from django.conf import settings
+from django.utils.http import cookie_date
 from django.utils.cache import patch_vary_headers
+from django.core.urlresolvers import reverse, NoReverseMatch
+from django.template import Template, Context
+from django.utils.encoding import force_unicode
+from mobileadmin.conf.settings import COOKIE_AGE, COOKIE_DOMAIN
 
 try:
     from threading import local
@@ -16,9 +22,27 @@ except ImportError:
     from django.utils._threading_local import local
 _thread_locals = local()
 
-safari_regex = re.compile(r'AppleWebKit/.*Mobile/')
-blackbarry_regex = re.compile(r'^BlackBerry')
-opera_mini_regex = re.compile(r'[Oo]pera [Mm]ini')
+safari = re.compile(r'AppleWebKit/.*Mobile/')
+blackbarry = re.compile(r'^BlackBerry')
+opera_mini = re.compile(r'[Oo]pera [Mm]ini')
+
+TOGGLE_TEMPLATE = """\
+<script type="text/javascript" charset="utf-8">
+    $('toggle').addEventListener('click', function() {
+        toggle('on', {{ age }}, '{{ admin_url }}', {{ secure|yesno:"true,false" }});
+    }, false);
+</script>
+"""
+
+def is_valid_user_agent(user_agent):
+    """
+    Checks if the given user agent string matches one of the valid user agents.
+    """
+    valid_user_agents = (safari, blackbarry, opera_mini)
+    for regex in valid_user_agents:
+        if regex.search(user_agent) is not None:
+            return True
+    return False
 
 def normalize_slashes(path):
     """
@@ -64,15 +88,17 @@ class MobileAdminMiddleware:
     """
     def process_request(self, request):
         user_agent = request.META.get('HTTP_USER_AGENT', '')
+        cookie = request.COOKIES.get('mobileadmin')
+        toggle = request.GET.get('mobileadmin')
+        use_mobileadmin = True
         if 'django.contrib.admin' in settings.INSTALLED_APPS:
             try:
-                admin_url = normalize_slashes(reverse('django.contrib.admin.views.main.index'))
+                admin_url = normalize_slashes(
+                    reverse('django.contrib.admin.views.main.index'))
             except NoReverseMatch:
                 admin_url = None
-            if admin_url is not None and \
-                (safari_regex.search(user_agent) is not None or \
-                     opera_mini_regex.search(user_agent) is not None or \
-                     blackbarry_regex.search(user_agent) is not None ) and \
+            if use_mobileadmin and admin_url is not None and \
+                is_valid_user_agent(user_agent) and \
                 normalize_slashes(request.path).startswith(admin_url):
                 set_thread_var('use_mobile_templates', True)
             else:
@@ -80,6 +106,22 @@ class MobileAdminMiddleware:
             return None
 
     def process_response(self, request, response):
-        if get_thread_var('use_mobile_templates') is not None:
-            patch_vary_headers(response, ('User-Agent',))
+        try:
+            admin_url = normalize_slashes(
+                reverse('django.contrib.admin.views.main.index'))
+        except NoReverseMatch:
+            admin_url = None
+        if admin_url is None or \
+            'text/html' not in response['Content-Type'] or \
+            request.is_ajax() or \
+            response.status_code != 200:
+            return response
+        content = Template(TOGGLE_TEMPLATE).render(Context({
+            'age': COOKIE_AGE,
+            'admin_url': admin_url,
+            'secure': request.is_secure(),
+            'path': request.get_full_path(),
+        }))
+        old_content = response.content
+        response.content = force_unicode(old_content).replace('</body>', content)
         return response

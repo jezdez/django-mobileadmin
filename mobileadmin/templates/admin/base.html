@@ -15,7 +15,7 @@
         <h1><a href="{% get_admin_root %}">Django</a></h1>
         {% block tools %}
         {% if user.is_authenticated and user.is_staff %}
-        <div class="user-tools float-right">
+        <div class="user-tools">
             <a href="{% get_admin_root %}logout/">{% trans "Logout" %}</a>
             <a href="{% get_admin_root %}password_change/">{% trans 'Change password' %}</a>
         </div>
