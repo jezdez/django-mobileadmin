@@ -9,6 +9,7 @@ from mobileadmin.conf import settings
 register = template.Library()
 absolute_url_re = re.compile(r'^(?:http(?:s)?:/)?/', re.IGNORECASE)
 
+<<<<<<< HEAD:mobileadmin/templatetags/mobile_admin.py
 def urljoin(url, path):
     url = url.rstrip('/')
     path = path.lstrip('/')
@@ -17,6 +18,7 @@ def urljoin(url, path):
 def mobileadmin_media_prefix(file_path=''):
     try:
         return urljoin(settings.MEDIA_PREFIX, file_path)
+>>>>>>> another change on the static files functionality and documentation:mobileadmin/templatetags/mobile_admin.py
     except AttributeError:
         return ''
 mobileadmin_media_prefix = register.simple_tag(mobileadmin_media_prefix)
