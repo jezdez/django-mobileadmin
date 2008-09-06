@@ -1,9 +1,0 @@
-{% load mobile_admin_modify %}
-{% for bound_field in bound_fields %}
-    {% field_label bound_field 30 %}{{ bound_field.html_error_list }}{% field_widget bound_field %}
-    {% if multiple_fields_per_line %}
-        {% ifnotequal fields_per_line forloop.scounter %}
-        </div><div class="row">
-        {% endifnotequal %}
-    {% endif %}
-{% endfor %}

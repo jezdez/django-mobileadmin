@@ -1,3 +1,0 @@
-{% load mobile_admin %}
-{% if add %}{% include "widget/foreign.html" %}{% endif %}
-{% if change %}{% if bound_field.existing_display %}&nbsp;<strong>{{ bound_field.existing_display|escape|truncate_dot:20 }}</strong>{% endif %}{% endif %}

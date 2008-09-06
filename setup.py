@@ -3,7 +3,7 @@ from distutils.core import setup
 from distutils.command.install import INSTALL_SCHEMES
 
 app_name = "mobileadmin"
-version = "0.3.1"
+version = "0.5"
 
 # Tell distutils to put the data_files in platform-specific installation
 # locations. See here for an explanation:
@@ -34,7 +34,8 @@ for dirpath, dirnames, filenames in os.walk(app_name):
 
 setup(name=app_name,
       version=version,
-      description='The Django admin interface optimized for iPhone/iPod touch.',
+      description='The Django admin interface for mobile devices.',
+      long_description=open('docs/overview.rst').read(),
       author='Jannis Leidel',
       author_email='jannis@leidel.info',
       url='http://code.google.com/p/django-%s/' % app_name,
