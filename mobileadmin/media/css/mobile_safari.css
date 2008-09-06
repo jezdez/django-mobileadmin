@@ -484,12 +484,23 @@ fieldset > .form-row:first-child {
     margin-top: 10px;
 }
 
-.form-row > input[type="checkbox"],
-.form-row > input[type="radio"],
-.radiolist input {
+.form-row > input[type="checkbox"] {
     width: 30px;
     height: 30px;
     margin: 8px 0px 0px;
+    border: 0;
+    -webkit-border-radius: 8px;
+    background: #fff url(../img/default-bg.gif) repeat-x bottom;
+    float: left;
+    clear: left;
+}
+
+.radiolist input {
+    position:relative;
+    width: 30px;
+    height: 30px;
+    margin: -6px 0;
+    padding: 0;
     border: 0;
     -webkit-border-radius: 8px;
     background: #fff url(../img/default-bg.gif) repeat-x bottom;
@@ -567,16 +578,11 @@ fieldset > .form-row:first-child {
 
 .form-row > ul.radiolist li {
     list-style: none;
+    margin: 10px 10px 20px;
+    padding: 0;
 }
-
 .form-row > ul.radiolist label {
-    position: absolute;
-    display: block;
-    color: #333;
-    font-size: 14px;
-    float: left;
-    margin-left: 40px;
-    margin-top: -24px;
+    top: 13px;
 }
 
 .form-row > ul.inline {
