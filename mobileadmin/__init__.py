@@ -1,5 +1,4 @@
 from django.contrib.admin import site as main_site
-from django.contrib.auth.admin import UserAdmin
 from django.core.exceptions import ImproperlyConfigured
 
 from mobileadmin.options import MobileModelAdmin
@@ -13,6 +12,8 @@ def autoregister():
     Auto-register all ModelAdmin instances of the default AdminSite with the
     mobileadmin app and set the templates accordingly.
     """
+    from django.contrib.auth.admin import UserAdmin
+    
     for model, modeladmin in main_site._registry.iteritems():
         admin_class = modeladmin.__class__
 
