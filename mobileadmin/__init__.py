@@ -25,7 +25,7 @@ def autoregister():
         site.register(model, admin_class)
 
 def autodiscover():
-        raise ImproperlyConfigured("Please use the autodiscover funtion of "
+        raise ImproperlyConfigured("Please use the autodiscover function of "
                                    "Django's default admin app and then "
                                    "call 'mobileadmin.autoregister' to use "
                                    "mobileadmin.")
