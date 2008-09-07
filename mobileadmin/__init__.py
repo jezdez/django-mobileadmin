@@ -1,5 +1,5 @@
-from django.contrib.auth.admin import UserAdmin
 from django.contrib.admin import site as main_site
+from django.contrib.auth.admin import UserAdmin
 from django.core.exceptions import ImproperlyConfigured
 
 from mobileadmin.options import MobileModelAdmin
