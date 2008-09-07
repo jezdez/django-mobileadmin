@@ -82,7 +82,7 @@ function.
     with your favorite URL, e.g. /ma/. Add::
 
         urlpatterns += patterns('',
-            (r'^ma/(.*)', mobileadmin.site.root),
+            (r'^ma/(.*)', mobileadmin.sites.site.root),
         )
         
     *mobileadmin* is now replicating all of the regular admin features and
@@ -209,7 +209,7 @@ Just use it as you would use the base classes, e.g.::
 
     class MobileAuthorAdmin(mobileadmin.MobileModelAdmin):
         pass
-    mobileadmin.site.register(Author, MobileAuthorAdmin)
+    mobileadmin.sites.site.register(Author, MobileAuthorAdmin)
 
 Then import ``mobileadmin`` in your URLconf to instantiate a
 ``MobileAdminSite`` object, use Django's ``autodiscover()`` to load
@@ -225,7 +225,7 @@ the URLConf::
 
     urlpatterns = patterns('',
         ('^admin/(.*)', admin.site.root),
-        (r'^ma/(.*)', mobileadmin.site.root),
+        (r'^ma/(.*)', mobileadmin.sites.site.root),
     )
 
 .. _InlineModelAdmin: http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects

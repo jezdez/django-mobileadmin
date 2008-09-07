@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 from mobileadmin.options import MobileModelAdmin
 from mobileadmin.options import MobileStackedInline, MobileTabularInline
-from mobileadmin.sites import MobileAdminSite, site
+from mobileadmin.sites import MobileAdminSite
 from mobileadmin import decorators, views
 from mobileadmin.conf import settings
 
@@ -13,6 +13,7 @@ def autoregister():
     mobileadmin app and set the templates accordingly.
     """
     from django.contrib.auth.admin import UserAdmin
+    from mobileadmin.sites import site
     
     for model, modeladmin in main_site._registry.iteritems():
         admin_class = modeladmin.__class__
