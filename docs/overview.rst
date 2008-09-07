@@ -204,10 +204,10 @@ and `AdminSite`_ classes, that include the neccesary bits to make it work.
 
 Just use it as you would use the base classes, e.g.::
 
-    import mobileadmin
+    from mobileadmin import options
     from myproject.myapp.models import Author
 
-    class MobileAuthorAdmin(mobileadmin.MobileModelAdmin):
+    class MobileAuthorAdmin(options.MobileModelAdmin):
         pass
     mobileadmin.sites.site.register(Author, MobileAuthorAdmin)
 
