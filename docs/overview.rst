@@ -111,8 +111,6 @@ Extending ``mobileadmin``
 recognize different devices and platforms:
 
 - Mobile Safari (iPhone/iPod touch)
-- Blackberry
-- Opera Mini
 
 But it's made for being extended.
 
