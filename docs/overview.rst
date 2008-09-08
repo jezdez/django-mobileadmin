@@ -79,7 +79,7 @@ function.
     This registers your existing admin configuration with *mobileadmin*.
 
 2.  Extend the urlpatterns to hook the default ``MobileAdminSite`` instance`
-    with your favorite URL, e.g. /ma/. Add::
+    with your favorite URL, e.g. ``/ma/``. Add::
 
         urlpatterns += patterns('',
             (r'^ma/(.*)', mobileadmin.sites.site.root),
@@ -88,10 +88,21 @@ function.
     *mobileadmin* is now replicating all of the regular admin features and
     uses templates adapted to the mobile device you are using.
 
+3.  Set the ``handler404`` and ``handler500`` variables in your URLConf to the
+    views that are provided by *mobileadmin*::
+
+        handler404 = 'mobileadmin.views.page_not_found'
+        handler500 = 'mobileadmin.views.server_error'
+    
+    That is needed to load the ``404.html`` and ``500.html`` templates
+    according to the user agent of the browser on your mobile device. It
+    has an automatic fallback to `Django's default error handlers`_.
+
 .. _INSTALLED_APPS: http://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 .. _ADMIN_MEDIA_PREFIX: http://docs.djangoproject.com/en/dev/ref/settings/#admin-media-prefix
 .. _TEMPLATE_CONTEXT_PROCESSORS: http://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
 .. _installed: http://docs.djangoproject.com/en/dev/ref/contrib/admin/#overview
+.. _Django's default error handlers: http://docs.djangoproject.com/en/dev/topics/http/views/#customizing-error-views
 
 Extending ``mobileadmin``
 =========================
