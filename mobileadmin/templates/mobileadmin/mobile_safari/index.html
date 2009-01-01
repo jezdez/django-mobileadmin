@@ -10,7 +10,7 @@
 {% if app_list %}
     <ul id="applist" selected="true">
     {% for app in app_list %}
-    <li><a href="{{ app.app_url }}/" id="{{ app.name|slugify }}_app">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></li>
+    <li><a href="{{ app.app_url }}" id="{{ app.name|slugify }}_app">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></li>
     <script type="text/javascript">truncate({'{{ app.name|slugify }}_app': 35});</script>
     {% endfor %}
     </ul>
