@@ -43,11 +43,6 @@ def mobile_templates(function):
                     'admin/%(template_name)s',
                     '%(template_name)s',
                 ]
-            else:
-                path_list += [
-                    'admin/%(template_name)s',
-                    '%(template_name)s',
-                ]
-            setattr(self, attr_name, [path % params for path in path_list])
+                setattr(self, attr_name, [path % params for path in path_list])
         return function(self, request, *args, **kwargs)
     return wraps(function)(_change_templates)
