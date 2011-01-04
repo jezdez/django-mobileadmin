@@ -610,9 +610,10 @@ fieldset > .form-row:first-child {
     display: none;
 }
 
-.panel > h2 {
+.panel h2 {
     margin: 0;
-    padding: 2px 10px;
+    padding: 8px 10px;
+    text-align: left;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
@@ -673,4 +674,24 @@ ul.errorlist > li {
     background-image: url(../img/default-bg.gif), url(../img/default-bg-reverse.gif),
         url(../img/icon_searchbox.png), url(../img/arrow.png),
         url(../img/nav-bg.gif), url(../img/nav-bg-reverse.gif);
+}
+
+/* COLLAPSED FIELDSETS */
+
+fieldset.collapsed * {
+    display: none;
+}
+
+fieldset.collapsed h2, fieldset.collapsed {
+    display: block !important;
+}
+
+fieldset.collapsed .collapse-toggle {
+    background: transparent;
+    display: inline !important;
+}
+
+a:link, a:visited {
+	color: #5B80B2;
+	text-decoration: none;
 }

@@ -1,9 +1,11 @@
 {% extends "mobileadmin/mobile_safari/base.html" %}
 {% load i18n mobile_admin_modify mobile_admin_media %}
 
+
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="../../../jsi18n/"></script>
 <script type="text/javascript" src="{% mobileadmin_media_prefix %}js/urlify.js"></script>
+{{ media }}
 {% endblock %}
 
 
