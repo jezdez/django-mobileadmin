@@ -243,7 +243,7 @@ body > .breadcrumbs {
     background: none;
 }
 
-.breadcrumbs span {
+.breadcrumbs > span {
     padding-right: 12px;
 }
 
@@ -634,16 +634,16 @@ fieldset > .form-row:first-child {
     color: #666;
 }
 
-.panel > h1 {
+.breadcrumbs h1 {
     margin: 0;
-    padding: 10px;
+    padding: 2px 100px;
     font-size: 16px;
     font-weight: bold;
     color: #666;
     background: none;
 }
 
-.panel > h1.error {
+.breadcrumbs h1.error {
     color: #CC2830;
 }
 

@@ -19,10 +19,7 @@
 {% if add %}
 <span class="float-right active">{% trans "Add" %}</span>
 {% endif %}
-{% endblock %}
 
-{% block content %}
-<form target="_self" class="panel" selected="true" title="{{ opts.object_name|capfirst }}" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% block form_top %}{% endblock %}
 {% if not add %}
     <h1><span id="object_name">{{ opts.object_name|escape }}</span>: <span id="original">{{ original|escape }}</span></h1>
     <script type="text/javascript">
@@ -31,6 +28,12 @@
         'original', 35
     });</script>
 {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+<form target="_self" class="panel" selected="true" title="{{ opts.object_name|capfirst }}" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
 
 {% if errors %}
 <h1 class="error">
