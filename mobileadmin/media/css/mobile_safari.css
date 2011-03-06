@@ -695,3 +695,24 @@ a:link, a:visited {
 	color: #5B80B2;
 	text-decoration: none;
 }
+
+.button, input[type="submit"], input[type="button"], .submit-row input {
+    background: white url(/media/img/admin/nav-bg.gif) bottom repeat-x;
+    padding: 3px 5px;
+    color: black;
+    border: 1px solid #BBB;
+    border-color: #DDD #AAA #AAA #DDD;
+}
+.button:active, input[type=submit]:active, input[type=button]:active {
+    background-image: url(/media/img/admin/nav-bg-reverse.gif);
+    background-position: top;
+}
+
+input, textarea, select, .form-row p {
+    margin: 2px 0;
+    padding: 2px 3px;
+    vertical-align: middle;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+}
