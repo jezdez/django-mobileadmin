@@ -5,6 +5,7 @@
 
 {% block content %}
 <form action="{{ app_path }}" class="panel" method="post" selected="true">
+{% csrf_token %}
 {% if error_message %}<h1 class="error">{{ error_message }}</h1>{% endif %}
 <fieldset>
 <div class="form-row">
