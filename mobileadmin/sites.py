@@ -11,7 +11,7 @@ class MobileAdminSite(sites.AdminSite):
     
     import mobileadmin
     urlpatterns += patterns('',
-        (r'^m/(.*)', mobileadmin.site.root),
+        (r'^m/(.*)', include(mobileadmin.sites.site.urls)),
     )
     """
     logout_template = None

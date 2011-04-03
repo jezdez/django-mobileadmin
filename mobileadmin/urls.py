@@ -2,5 +2,5 @@ from django.conf.urls.defaults import *
 import mobileadmin
 
 urlpatterns = patterns('',
-    (r'^(.*)', mobileadmin.site.root),
+    (r'^(.*)', include(mobileadmin.sites.site.urls)),
 )
