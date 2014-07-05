@@ -37,7 +37,7 @@ To install the *mobileadmin*, follow these steps:
    TEMPLATE_CONTEXT_PROCESSORS_ setting. It should look like this::
    
     TEMPLATE_CONTEXT_PROCESSORS = (
-       'django.core.context_processors.auth',
+       'django.contrib.auth.context_processors.auth',
        'django.core.context_processors.debug',
        'django.core.context_processors.i18n',
        'django.core.context_processors.media',
@@ -82,7 +82,7 @@ function.
     with your favorite URL, e.g. ``/ma/``. Add::
 
         urlpatterns += patterns('',
-            (r'^ma/(.*)', mobileadmin.sites.site.root),
+            (r'^ma/(.*)', include(mobileadmin.sites.site.urls)),
         )
         
     *mobileadmin* is now replicating all of the regular admin features and

@@ -3,7 +3,7 @@ from distutils.core import setup
 from distutils.command.install import INSTALL_SCHEMES
 
 app_name = "mobileadmin"
-version = "0.5.2"
+version = "0.5.3"
 
 # Tell distutils to put the data_files in platform-specific installation
 # locations. See here for an explanation:
